@@ -73,6 +73,8 @@ def handle_incoming_message(message, conexion):
             print(f"Eliminando ticket con id: {data['id']}")
             eliminar_ticket(conexion, data["id"], send_update=False)
 
+    print(f"Actualización de base de datos completada para la acción: {action} en la tabla: {data['table']}")
+
 def handle_client(client_socket, conexion):
     try:
         while True:
@@ -218,13 +220,13 @@ def insertar_datos_tickets(conexion, usuario_id, ingeniero_id, dispositivo_id, d
     except mysql.connector.Error as error:
         print("Error al insertar datos de ticket:", error)
 
-def editar_datos_usuario(conexion, id, nuevo_nombre, nuevo_apellido, nuevo_correo, nuevo_telefono, send_update=True):
+def editar_datos_usuario(conexion, id, nombre, apellido, correo, telefono, send_update=True):
     try:
         cursor = conexion.cursor()
         sql_update_query = """UPDATE USUARIOS 
                              SET nombre = %s, apellido = %s, correo = %s, telefono = %s
                              WHERE id = %s"""
-        valores = (nuevo_nombre, nuevo_apellido, nuevo_correo, nuevo_telefono, id)
+        valores = (nombre, apellido, correo, telefono, id)
         cursor.execute(sql_update_query, valores)
         conexion.commit()
         print("Datos de usuario actualizados correctamente")
@@ -236,10 +238,10 @@ def editar_datos_usuario(conexion, id, nuevo_nombre, nuevo_apellido, nuevo_corre
                     "table": "usuarios",
                     "values": {
                         "id": id,
-                        "nombre": nuevo_nombre,
-                        "apellido": nuevo_apellido,
-                        "correo": nuevo_correo,
-                        "telefono": nuevo_telefono
+                        "nombre": nombre,
+                        "apellido": apellido,
+                        "correo": correo,
+                        "telefono": telefono
                     }
                 }
             }
