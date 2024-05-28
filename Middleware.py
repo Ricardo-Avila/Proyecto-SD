@@ -9,6 +9,8 @@ from Usuario import menu_user
 from Admin import menu_admin
 from Ingeniero import menu_ingeniero
 from coordinar import initialize_connections, handle_incoming_messages
+from Sincronizacion import initialize_synchronization, handle_client
+
 def main():
     # Obtener la dirección IPv4 del host
     ipv4 = get_ipv4()
