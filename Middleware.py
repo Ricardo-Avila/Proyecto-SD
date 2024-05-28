@@ -104,11 +104,9 @@ def handle_client(client_socket, conexion):
             if not data:
                 break
             message = data.decode()
-            timestamp = time.strftime('%Y-%m-%d %H:%M:%S')
-            save_message(client_socket.getpeername()[0], message, timestamp)
-            if message.strip().lower() == 'exit':
-                break
-            client_socket.sendall("Mensaje recibido".encode())
+            print(f"Conexión entrante desde {client_socket.getpeername()}: {message}")
+            handle_incoming_message(message, conexion)
+            client_socket.sendall("Mensaje recibido y procesado".encode())
     except Exception as e:
         print("Error al manejar la conexión del cliente:", e)
     finally:
