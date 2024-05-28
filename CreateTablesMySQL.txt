@@ -1,0 +1,40 @@
+CREATE TABLE INGENIEROS (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nombre VARCHAR(100),
+    apellido VARCHAR(100),
+    aniosExperiencia INT,
+    telefono VARCHAR(20)
+);
+
+CREATE TABLE USUARIOS (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nombre VARCHAR(100),
+    apellido VARCHAR(100),
+    correo VARCHAR(100),
+    telefono VARCHAR(20)
+);
+
+CREATE TABLE DISPOSITIVOS (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    modelo VARCHAR(100),
+    marca VARCHAR(100),
+    anio INT,
+    sucursal VARCHAR(100)
+);
+
+CREATE TABLE TICKETS (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    usuario_id INT,
+    ingeniero_id INT,
+    dispositivo_id INT,  -- Nuevo campo para el ID del dispositivo
+    descripcion TEXT,
+    fecha DATE,
+    sucursal VARCHAR(15),
+    status VARCHAR(20) DEFAULT 'Pendiente',
+    FOREIGN KEY (usuario_id) REFERENCES USUARIOS(id),
+    FOREIGN KEY (ingeniero_id) REFERENCES INGENIEROS(id),
+    FOREIGN KEY (dispositivo_id) REFERENCES DISPOSITIVOS(id)  -- Clave foránea para el ID del dispositivo
+);
+
+
+
