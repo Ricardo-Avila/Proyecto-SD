@@ -1,10 +1,7 @@
-# Sincronizacion.py
 import socket
 import threading
 import json
-from modificarBD import insertar_datos_usuarios, insertar_datos_ingenieros, insertar_datos_dispositivos, insertar_datos_tickets
-from modificarBD import editar_datos_usuario, editar_datos_ingeniero, editar_datos_dispositivo, editar_datos_ticket
-from modificarBD import eliminar_usuario, eliminar_ingeniero, eliminar_dispositivo, eliminar_ticket, obtener_siguiente_id_usuario
+import mysql.connector
 
 connected_nodes = []
 
@@ -91,3 +88,20 @@ def handle_client(client_socket, conexion):
     finally:
         client_socket.close()
         print("Conexión con el cliente cerrada.")
+
+# Definir las funciones que eran parte de modificarBD.py para manipular la base de datos
+def insertar_datos_usuarios(conexion, id, nombre, apellido, correo, telefono):
+    try:
+        cursor = conexion.cursor()
+        sql_insert_query = """INSERT INTO USUARIOS (id, nombre, apellido, correo, telefono) 
+                              VALUES (%s, %s, %s, %s, %s)"""
+        valores = (id, nombre, apellido, correo, telefono)
+        cursor.execute(sql_insert_query, valores)
+        conexion.commit()
+        print("Datos de usuario insertados correctamente")
+    except mysql.connector.Error as error:
+        print("Error al insertar datos de usuario:", error)
+
+# (Definir de manera similar las funciones insertar_datos_ingenieros, insertar_datos_dispositivos, insertar_datos_tickets)
+# (Definir las funciones editar_datos_usuario, editar_datos_ingeniero, editar_datos_dispositivo, editar_datos_ticket)
+# (Definir las funciones eliminar_usuario, eliminar_ingeniero, eliminar_dispositivo, eliminar_ticket)
