@@ -1,3 +1,5 @@
+from Sincronizacion import *
+
 def obtener_siguiente_id_usuario(conexion):
     try:
         cursor = conexion.cursor()
