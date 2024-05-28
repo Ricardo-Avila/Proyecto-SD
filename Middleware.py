@@ -4,14 +4,12 @@ import threading
 import time
 from getIP import get_ipv4
 from connection import conectar_base_datos, cerrar_conexion
-from modificarBD import insertar_datos_usuarios, insertar_datos_ingenieros, insertar_datos_dispositivos, insertar_datos_tickets
-from modificarBD import editar_datos_usuario, editar_datos_ingeniero, editar_datos_dispositivo, editar_datos_ticket
-from modificarBD import eliminar_usuario, eliminar_ingeniero, eliminar_dispositivo, eliminar_ticket
+from modificarBD import *
 from Usuario import menu_user
 from Admin import menu_admin
 from Ingeniero import menu_ingeniero
 from coordinar import initialize_connections, handle_incoming_messages
-from Sincronizacion import initialize_synchronization, handle_client, send_update
+from Sincronizacion import initialize_synchronization, handle_client
 
 def main():
     ipv4 = get_ipv4()
@@ -98,22 +96,6 @@ def connect_to_remote_servers(local_ipv4):
         print("Conexiones a servidores remotos iniciadas.")
     except Exception as e:
         print("Error al conectar con los servidores remotos:", e)
-
-def handle_client(client_socket, conexion):
-    try:
-        while True:
-            data = client_socket.recv(1024)
-            if not data:
-                break
-            message = data.decode()
-            print(f"Conexión entrante desde {client_socket.getpeername()}: {message}")
-            handle_incoming_message(message, conexion)
-            client_socket.sendall("Mensaje recibido y procesado".encode())
-    except Exception as e:
-        print("Error al manejar la conexión del cliente:", e)
-    finally:
-        client_socket.close()
-        print("Conexión con el cliente cerrada.")
 
 def save_message(ip_address, message, timestamp):
     with open("messages.txt", "a") as file:
