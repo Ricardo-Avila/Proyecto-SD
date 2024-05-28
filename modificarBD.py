@@ -1,5 +1,3 @@
-from Sincronizacion import *
-
 def obtener_siguiente_id_usuario(conexion):
     try:
         cursor = conexion.cursor()
@@ -84,25 +82,9 @@ def insertar_datos_usuarios(conexion, nombre, apellido, correo, telefono):
         conexion.commit()
         print("Datos de usuario insertados correctamente")
 
-        # Enviar actualización a otros nodos
-        update_data = {
-            "action": "insert",
-            "data": {
-                "table": "usuarios",
-                "values": {
-                    "id": id,
-                    "nombre": nombre,
-                    "apellido": apellido,
-                    "correo": correo,
-                    "telefono": telefono
-                }
-            }
-        }
-        send_update(update_data)
-        print(f"Enviado mensaje de actualización: {update_data}")
-
     except mysql.connector.Error as error:
         print("Error al insertar datos de usuario:", error)
+
 
 def insertar_datos_ingenieros(conexion,nombre,apellido,aniosExperiencia,telefono):
     try:
