@@ -1,8 +1,8 @@
 import socket
 import threading
 import json
+from modificarBD import *
 
-# Lista de nodos conectados (IP y puerto)
 connected_nodes = []
 
 def initialize_synchronization(local_ipv4):
@@ -21,10 +21,12 @@ def send_message(ip, port, message):
         with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as client_socket:
             client_socket.connect((ip, port))
             client_socket.sendall(json.dumps(message).encode())
+            print(f"Mensaje enviado a {ip}:{port}: {message}")
     except Exception as e:
         print(f"Error al enviar mensaje a {ip}:{port}:", e)
 
 def handle_incoming_message(message, conexion):
+    print(f"Mensaje recibido: {message}")
     update_data = json.loads(message)
     action = update_data["action"]
     data = update_data["data"]
@@ -64,6 +66,7 @@ def handle_client(client_socket, conexion):
             if not data:
                 break
             message = data.decode()
+            print(f"Conexión entrante desde {client_socket.getpeername()}: {message}")
             handle_incoming_message(message, conexion)
             client_socket.sendall("Mensaje recibido y procesado".encode())
     except Exception as e:
