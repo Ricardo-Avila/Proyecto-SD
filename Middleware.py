@@ -4,7 +4,9 @@ import threading
 import time
 from getIP import get_ipv4
 from connection import conectar_base_datos, cerrar_conexion
-from modificarBD import *
+from modificarBD import insertar_datos_usuarios, insertar_datos_ingenieros, insertar_datos_dispositivos, insertar_datos_tickets
+from modificarBD import editar_datos_usuario, editar_datos_ingeniero, editar_datos_dispositivo, editar_datos_ticket
+from modificarBD import eliminar_usuario, eliminar_ingeniero, eliminar_dispositivo, eliminar_ticket
 from Usuario import menu_user
 from Admin import menu_admin
 from Ingeniero import menu_ingeniero
