@@ -250,6 +250,7 @@ def disposAgregar(data, num):
             if len(datos) == 4:
                 nombre, apellido, correo, telefono = datos
                 # Llama a una función que procese esta opción si es necesario
+                insertar_datos_dispositivos(baseDeDatos, modelo, marca, anio, sucursal)
             else:
                 print("Cantidad incorrecta de datos para la opción 2")
     except Exception as e:
