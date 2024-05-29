@@ -11,7 +11,7 @@ from Ingeniero import menu_ingeniero
 from catalogo import determinar_func
 import mysql.connector
 
-HEARTBEAT_INTERVAL = 300 #30
+HEARTBEAT_INTERVAL = 60 #UN minuto
 TIMEOUT_INTERVAL = 15
 is_master = False
 node_status = {}
