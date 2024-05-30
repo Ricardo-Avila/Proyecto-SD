@@ -244,12 +244,14 @@ def disposAgregar(data, num):
             if len(datos) == 3:
                 modelo, marca, anio = datos
                 menu_admin2(baseDeDatos, coordinator_ip, modelo, marca, anio)
+                print("Entramos a opción 1")
             else:
                 print("Cantidad incorrecta de datos para la opción 1")
         elif num == 2:
             if len(datos) == 3:
                 modelo, marca, anio = datos
                 menu_admin2(baseDeDatos, coordinator_ip, modelo, marca, anio)
+                print("Entramos a opción 2")
             else:
                 print("Cantidad incorrecta de datos para la opción 2")
     except Exception as e:
