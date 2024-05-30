@@ -98,7 +98,7 @@ def menu_admin2(conexion,is_master,modelo, marca, anio):
         servidores_globales = leer_servidores_globales("remote_servers.txt")
         servidores_activos = leer_servidores_activos("active_nodes.txt", ipv4)
         enviar_mensaje_agregar_dispositivo(ipv4, modelo, marca, anio, sucursal, servidores_globales, servidores_activos)
-        #insertar_datos_dispositivos(conexion, *obtener_datos_dispositivo(), sucursal)
+        insertar_datos_dispositivos(conexion, *obtener_datos_dispositivo(), sucursal)
     else:
         print("ERROR AL COORDINAR DISPOSITIVOS")
 
