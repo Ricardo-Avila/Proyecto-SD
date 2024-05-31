@@ -1,0 +1,6 @@
+INSERT INTO DISPOSITIVOS (modelo, marca, anio, sucursal) VALUES
+('Laptop', 'Dell', 2020, '192.168.183.157'),
+('Celular', 'Iphone 15 PRO MAX', 2024, '192.168.183.148'),
+('Tablet', 'Sansung S6 Lite', 2016, '192.168.183.136'),
+('Celular', 'Xiaomi X3 Pro', 2018, '192.168.183.151'),
+('Laptop', 'Dell', 2021, '192.168.183.150');
